@@ -1,0 +1,13 @@
+# Application
+www
+
+# Logs
+*.log
+
+# Dotenv
+.env
+.env.*
+!.env.example
+
+# Etc
+.DS_Store
