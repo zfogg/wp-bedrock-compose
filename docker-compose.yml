@@ -11,10 +11,12 @@ services:
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: ${DB_NAME}
-      TZ: 'Europe/Amsterdam'
+      TZ: 'America/New_York'
     ports:
       - "3306:3306"
     restart: always
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   php:
     image: chanto/wp-bedrock:latest
@@ -24,6 +26,8 @@ services:
     depends_on:
       - mysql
     restart: always
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   nginx:
     image: nginx:stable-alpine
@@ -35,6 +39,8 @@ services:
     depends_on:
       - php
     restart: always
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
 volumes:
   mysql_data:
